@@ -10,6 +10,8 @@
         $id = "rdesruelle";
 //        $user->GetUser($connexion, $id);
         $user->GetAllUsers($connexion);
+        $login = $user->Connexion($connexion,"rdesruelle", "test");
+        echo $login;
 
     } catch (Exception $ex) {
         echo 'oupssss';

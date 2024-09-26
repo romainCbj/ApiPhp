@@ -34,7 +34,7 @@ class Users {
        }
        
    }
-      function GetAllUsers($pdo){
+    function GetAllUsers($pdo){
        try{
            
             $stmt = $pdo->prepare("SELECT * FROM Users");
@@ -56,6 +56,27 @@ class Users {
            echo 'oups';
        }
        
+   }
+   
+   function Connexion ($pdo,$id,$password)
+   {
+        try{
+            $stmt = $pdo->prepare("SELECT * FROM Users WHERE Identifiant = ? AND Password= ?");
+            $stmt->bind_param("ss", $id, $password);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+                      
+            if($result->num_rows > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+       } catch (Exception $ex) {
+           echo $ex;
+       }
+       return true;
    }
    
     
